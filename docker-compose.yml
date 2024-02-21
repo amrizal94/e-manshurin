@@ -1,0 +1,51 @@
+version: '39'
+services:
+  web:
+    image: php:5.6-apache
+    container_name: php5.6-apache
+    ports:
+      - "8000:80"
+    volumes:
+      - ./web:/var/www/html/
+    command: >
+      bash -c "a2enmod rewrite
+      && apache2-foreground"
+    depends_on:
+      - db
+  
+  db:
+    image: mariadb
+    container_name: mariadb
+    environment:
+      MYSQL_ROOT_PASSWORD: /run/secrets/db_root_password
+      MYSQL_DATABASE: /run/secrets/db_database
+      MYSQL_USER: /run/secrets/db_user
+      MYSQL_PASSWORD: /run/secrets/db_password
+    ports:
+      - "3307:3306"
+    volumes:
+      - ./mysql:/var/lib/mysql
+    secrets:
+      - db_database
+      - db_password
+      - db_root_password
+      - db_user
+
+  adminer:
+    image: adminer
+    container_name: adminer
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+secrets:
+  db_database:
+    file: db_database.txt
+  db_password:
+    file: db_password.txt
+  db_root_password:
+    file: db_root_password.txt
+  db_user:
+    file: db_user.txt
+
+
