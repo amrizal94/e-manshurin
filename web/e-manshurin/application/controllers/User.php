@@ -5,10 +5,11 @@ class User extends CI_Controller
 {
     public function index()
     {
-        $user = $this->db->get_where('user', [
+        $data['title'] = "Akun";
+        $data['user'] = $this->db->get_where('user', [
             'id' => $this->session->userdata('id')
         ])->row_array();
-        if (!$user) {
+        if (!$data['user']) {
             $this->session->set_flashdata('message', '
             <div class="alert alert-warning" role="alert">
                 Please login first!
@@ -16,6 +17,10 @@ class User extends CI_Controller
             ');
             redirect('auth');
         }
-        echo 'Selamat datang ' . $user['name'];
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('user/index', $data);
+        $this->load->view('templates/footer');
     }
 }
