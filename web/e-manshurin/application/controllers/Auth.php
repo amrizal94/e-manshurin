@@ -5,10 +5,53 @@ class Auth extends CI_Controller
 {
     public function index()
     {
-        $data['title'] = 'E-Manshurin | Login';
-        $this->load->view('templates/auth_header', $data);
-        $this->load->view('auth/login');
-        $this->load->view('templates/auth_footer');
+        $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email');
+        $this->form_validation->set_rules('password', 'Password', 'required|trim');
+        if ($this->form_validation->run() == false) {
+            $data['title'] = 'E-Manshurin | Login';
+            $this->load->view('templates/auth_header', $data);
+            $this->load->view('auth/login');
+            $this->load->view('templates/auth_footer');
+        } else {
+            $input = [
+                'email' => $this->input->post('email'),
+                'password' => $this->input->post('password'),
+            ];
+
+            $user = $this->db->get_where('user', [
+                'email' => $input['email']
+            ])->row_array();
+
+            if (!$user) {
+                $this->session->set_flashdata('message', '
+                <div class="alert alert-danger" role="alert">
+                    Email not registered!
+                </div>');
+                redirect('auth');
+            }
+            if ($user['is_active'] == 0) {
+                $this->session->set_flashdata('email', $input['email']);
+                $this->session->set_flashdata('message', '
+                <div class="alert alert-warning" role="alert">
+                    Email has not been activated! please check your inbox or spam email.
+                </div>');
+                redirect('auth');
+            }
+            if (!password_verify($input['password'], $user['password'])) {
+                $this->session->set_flashdata('email', $input['email']);
+                $this->session->set_flashdata('message', '
+                <div class="alert alert-danger" role="alert">
+                    Wrong password!
+                </div>');
+                redirect('auth');
+            }
+            $data = [
+                'id' => $user['id'],
+                'role_id' => $user['role_id'],
+            ];
+            $this->session->set_userdata($data);
+            redirect('user');
+        }
     }
 
     public function register()
@@ -23,26 +66,38 @@ class Auth extends CI_Controller
         ]);
         $this->form_validation->set_rules('repassword', 'Repeat Password', 'matches[password]');
 
-        if ($this->form_validation->run() == false) {
-            $data['title'] = 'E-Manshurin | Register';
-            $this->load->view('templates/auth_header', $data);
-            $this->load->view('auth/register');
-            $this->load->view('templates/auth_footer');
-        } else {
+        if ($this->form_validation->run()) {
             $data = [
                 'name' => htmlspecialchars($this->input->post('name', true)),
                 'email' => htmlspecialchars($this->input->post('email', true)),
                 'image' => 'default.jpg',
-                'password' => password_hash(htmlspecialchars($this->input->post('password', true)), PASSWORD_DEFAULT),
-                'role_id' => '2',
+                'password' => password_hash($this->input->post('password'), PASSWORD_DEFAULT),
+                'role_id' => 2,
                 'is_active' => 1,
                 'date_created' => time()
             ];
 
             $this->db->insert('user', $data);
-            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
-            Congratulation! your account has been created. Please Login</div>');
+            $this->session->set_flashdata('message', '
+            <div class="alert alert-success" role="alert">
+                Congratulation! your account has been created. Please Login
+            </div>');
             redirect('auth');
         }
+        $data['title'] = 'E-Manshurin | Register';
+        $this->load->view('templates/auth_header', $data);
+        $this->load->view('auth/register');
+        $this->load->view('templates/auth_footer');
+    }
+
+    public function  logout()
+    {
+        $this->session->unset_userdata('id');
+        $this->session->unset_userdata('role_id');
+        $this->session->set_flashdata('message', '
+            <div class="alert alert-info" role="alert">
+                You have been logout!
+            </div>');
+        redirect('auth');
     }
 }
