@@ -1,15 +1,21 @@
 version: '39'
 services:
   web:
-    image: php:5.6-apache
-    container_name: php5.6-apache
+    image: php:7.2.5-apache
+    container_name: php7.2.5-apache
     ports:
       - "8000:80"
     volumes:
       - ./web:/var/www/html/
-    command: >
-      bash -c "a2enmod rewrite
-      && apache2-foreground"
+    command:
+      - /bin/sh
+      - -c
+      - |
+          docker-php-ext-install mysqli 
+          echo "extension installed.....starting php-fpm........................................"
+          php-fpm
+          a2enmod rewrite
+          apache2-foreground
     depends_on:
       - db
   

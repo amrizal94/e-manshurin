@@ -1,4 +1,5 @@
 <?php
+
 /**
  * CodeIgniter
  *
@@ -36,7 +37,7 @@
  * @since	Version 1.0.0
  * @filesource
  */
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 /**
  * Application Controller Class
@@ -50,7 +51,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @author		EllisLab Dev Team
  * @link		https://codeigniter.com/userguide3/general/controllers.html
  */
-class CI_Controller {
+class CI_Controller
+{
 
 	/**
 	 * Reference to the CI singleton
@@ -65,6 +67,7 @@ class CI_Controller {
 	 * @var	CI_Loader
 	 */
 	public $load;
+	public $user_data;
 
 	/**
 	 * Class constructor
@@ -73,19 +76,32 @@ class CI_Controller {
 	 */
 	public function __construct()
 	{
-		self::$instance =& $this;
+		self::$instance = &$this;
 
 		// Assign all the class objects that were instantiated by the
 		// bootstrap file (CodeIgniter.php) to local class variables
 		// so that CI can run as one big super object.
-		foreach (is_loaded() as $var => $class)
-		{
-			$this->$var =& load_class($class);
+		foreach (is_loaded() as $var => $class) {
+			$this->$var = &load_class($class);
 		}
 
-		$this->load =& load_class('Loader', 'core');
+		$this->load = &load_class('Loader', 'core');
 		$this->load->initialize();
 		log_message('info', 'Controller Class Initialized');
+		if (!$this->user_data && $this->session->userdata('id')) {
+			$this->user_data = $this->db->get_where('user', [
+				'id' => $this->session->userdata('id')
+			])->row_array();
+		}
+
+		if (!$this->user_data && $this->router->class != "auth") {
+			$this->session->set_flashdata('message', '
+		    <div class="alert alert-warning" role="alert">
+		        Please login first!
+		    </div>
+		    ');
+			redirect('auth');
+		}
 	}
 
 	// --------------------------------------------------------------------
@@ -100,5 +116,4 @@ class CI_Controller {
 	{
 		return self::$instance;
 	}
-
 }

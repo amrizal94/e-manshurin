@@ -53,6 +53,14 @@
 <!-- Custom scripts for all pages-->
 <script src="<?= base_url('assets/'); ?>js/sb-admin-2.min.js"></script>
 
+<?php
+if ($tablejs) { ?>
+    <script src="<?= base_url('assets/') . $tablejs['jquery']; ?>"></script>
+    <script src="<?= base_url('assets/') . $tablejs['bootstrap']; ?>"></script>
+    <script src="<?= base_url('assets/') . $tablejs['demo']; ?>"></script>
+<?php
+} ?>
+
 </body>
 
 </html>

@@ -45,12 +45,8 @@ class Auth extends CI_Controller
                 </div>');
                 redirect('auth');
             }
-            $data = [
-                'id' => $user['id'],
-                'role_id' => $user['role_id'],
-            ];
-            $this->session->set_userdata($data);
-            redirect('user');
+            $this->session->set_userdata('id', $user['id']);
+            redirect('masteruser');
         }
     }
 
@@ -93,7 +89,6 @@ class Auth extends CI_Controller
     public function  logout()
     {
         $this->session->unset_userdata('id');
-        $this->session->unset_userdata('role_id');
         $this->session->set_flashdata('message', '
             <div class="alert alert-info" role="alert">
                 You have been logout!
