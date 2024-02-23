@@ -2,8 +2,78 @@
     <h1 class="h3 mb-4 text-gray-800 mr-auto"><?= $title; ?></h1>
     <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm mx-5">
         Export Excel</a>
-    <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
-        <i class="fas fa-plus fa-sm text-white-50"></i> Tambah User</a>
+    <button type="button" data-toggle="modal" data-target="#addMember" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+        <i class="fas fa-plus fa-sm text-white-50"></i> Tambah User</button>
+</div>
+
+<div class="modal fade" tabindex="-1" id="addMember">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Form Isian Data User</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form class="p-3">
+                    <div class="form-group">
+                        <label for="name">Nama Lengkap <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="name" name="name">
+                    </div>
+                    <div class="form-group">
+                        <label for="username">Username <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="username" name="username">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password <span class="text-danger">*</span></label>
+                        <input type="password" class="form-control" id="password" name="password">
+                    </div>
+                    <div class="form-group">
+                        <label for="level_user">Level User <span class="text-danger">*</span></label>
+                        <select class="form-control" id="level_user" name="level_user">
+                            <option>Level User</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="status_akun">Status Akun <span class="text-danger">*</span></label>
+                        <select class="form-control" id="status_akun" name="status_akun">
+                            <option>Status Akun</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="masjid">Masjid <span class="text-danger">*</span></label>
+                        <select class="form-control" id="masjid" name="masjid">
+                            <option>Masjid</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="daerah">Daerah <span class="text-danger">*</span></label>
+                        <select class="form-control" id="daerah" name="daerah">
+                            <option>Daerah</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="desa">Desa <span class="text-danger">*</span></label>
+                        <select class="form-control" id="desa" name="desa">
+                            <option>Desa</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="kelompok">Kelompok <span class="text-danger">*</span></label>
+                        <select class="form-control" id="kelompok" name="kelompok">
+                            <option>Kelompok</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
 </div>
 
 <div class="d-flex flex-row-reverse">

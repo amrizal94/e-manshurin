@@ -100,7 +100,7 @@ class CI_Controller
 			redirect('auth');
 		} else {
 			$data = [
-				'expired' => time() + minutes(1),
+				'expired' => time() + minutes(5),
 			];
 			$this->session->set_userdata($data);
 		}

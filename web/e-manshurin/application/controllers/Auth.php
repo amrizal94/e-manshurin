@@ -3,11 +3,17 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Auth extends CI_Controller
 {
-    public function index()
+
+    public function __construct()
     {
+        parent::__construct();
         if ($this->user_data) {
             redirect('masteruser');
         }
+    }
+
+    public function index()
+    {
         $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email');
         $this->form_validation->set_rules('password', 'Password', 'required|trim');
         if ($this->form_validation->run() == false) {
