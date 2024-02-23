@@ -1,12 +1,10 @@
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-4 text-gray-800 mr-auto"><?= $title; ?></h1>
-    <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm mx-5">
-        Export Excel</a>
-    <button type="button" data-toggle="modal" data-target="#add-masjid" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+    <button type="button" data-toggle="modal" data-target="#add-desa" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
         <i class="fas fa-plus fa-sm text-white-50"></i> Tambah <?= $master_name; ?></button>
 </div>
 
-<div class="modal fade" tabindex="-1" id="add-masjid">
+<div class="modal fade" tabindex="-1" id="add-desa">
     <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
         <div class="modal-content">
             <div class="modal-header">
@@ -16,37 +14,26 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form id="form-add-masjid" method="post" action="<?= base_url($this->router->class); ?>">
+                <form id="form-add-desa" method="post" action="<?= base_url($this->router->class); ?>">
                     <div class="form-group">
-                        <label for="name">Nama Masjid <span class="text-danger">*</span></label>
+                        <label for="name">Nama Desa <span class="text-danger">*</span></label>
                         <input type="text" class="form-control" id="name" name="name">
                     </div>
                     <div class="form-group">
-                        <label for="alamat">Alamat Masjid <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control" id="alamat" name="alamat">
+                        <label for="daerah">Daerah <span class="text-danger">*</span></label>
+                        <select class="form-control" id="daerah" name="daerah">
+                            <option>Daerah</option>
+                        </select>
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                <button type="submit" form="form-add-masjid" class="btn btn-primary">Simpan</button>
+                <button type="submit" form="form-add-desa" class="btn btn-primary">Simpan</button>
             </div>
         </div>
     </div>
 </div>
-
-<div class="d-flex justify-content-end">
-    <div class="btn-group">
-        <form class="d-flex">
-            <select class="form-control ml-3" id="masjid" name="masjid">
-                <option>Masjid</option>
-            </select>
-            <button type="submit" class="btn btn-primary ml-3 w-auto"><i class="fas fa-search fa-fw"></i>
-            </button>
-        </form>
-    </div>
-</div>
-
 
 <!-- DataTales Example -->
 <div class="card shadow my-4">
@@ -58,15 +45,15 @@
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                     <tr>
-                        <th>Nama Masjid</th>
-                        <th>Alamat Masjid</th>
+                        <th>Nama Desa</th>
+                        <th>Nama Daerah</th>
                         <th class="text-right"><i class="fas fa-cog fa-sm"></i></th>
                     </tr>
                 </thead>
                 <tfoot>
                     <tr>
-                        <th>Nama Masjid</th>
-                        <th>Alamat Masjid</th>
+                        <th>Nama Desa</th>
+                        <th>Nama Daerah</th>
                         <th class="text-right"><i class="fas fa-cog fa-sm"></i></th>
                     </tr>
                 </tfoot>

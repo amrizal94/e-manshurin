@@ -14,7 +14,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form id="form-add-daerah" method="post" action="<?= base_url('mastermasjid'); ?>">
+                <form id="form-add-daerah" method="post" action="<?= base_url($this->router->class); ?>">
                     <div class="form-group">
                         <label for="name">Nama Daerah <span class="text-danger">*</span></label>
                         <input type="text" class="form-control" id="name" name="name">
@@ -23,7 +23,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                <button type="submit" form="form-add-masjid" class="btn btn-primary">Simpan</button>
+                <button type="submit" form="form-add-daerah" class="btn btn-primary">Simpan</button>
             </div>
         </div>
     </div>

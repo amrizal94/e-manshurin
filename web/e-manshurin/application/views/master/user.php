@@ -16,7 +16,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form id="form-add-member" class="p-3" method="post" action="<?= base_url('masteruser'); ?>">
+                <form id="form-add-member" class="p-3" method="post" action="<?= base_url($this->router->class); ?>">
                     <div class="form-group">
                         <label for="name">Nama Lengkap <span class="text-danger">*</span></label>
                         <input type="text" class="form-control" id="name" name="name">
