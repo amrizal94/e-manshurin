@@ -61,9 +61,9 @@
     </li>
 
     <li class="nav-item">
-        <a class="nav-link py-0" href="<?= base_url(''); ?>">
+        <a class="nav-link py-0" href="<?= base_url('masterwilayahpengurus'); ?>">
             <i class="fas fa-fw fa-table"></i>
-            <span>Master Wil Pengurus</span></a>
+            <span>Master Wilayah Pengurus</span></a>
     </li>
 
     <li class="nav-item">
