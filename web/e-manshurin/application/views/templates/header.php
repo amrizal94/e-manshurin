@@ -18,10 +18,13 @@
     <!-- Custom styles for this template-->
     <link href="<?= base_url('assets/'); ?>css/sb-admin-2.min.css" rel="stylesheet">
 
-    <?php if ($tablecss) {
+    <?php if ($optioncss) {
+        foreach ($optioncss as $css) {
     ?>
-        <link href="<?= base_url('assets/') . $tablecss; ?>" rel="stylesheet">
-    <?php } ?>
+            <link href="<?= base_url('assets/') . $css; ?>" rel="stylesheet">
+    <?php
+        }
+    } ?>
 
 </head>
 

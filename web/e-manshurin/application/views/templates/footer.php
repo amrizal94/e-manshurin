@@ -54,11 +54,12 @@
 <script src="<?= base_url('assets/'); ?>js/sb-admin-2.min.js"></script>
 
 <?php
-if ($tablejs) { ?>
-    <script src="<?= base_url('assets/') . $tablejs['jquery']; ?>"></script>
-    <script src="<?= base_url('assets/') . $tablejs['bootstrap']; ?>"></script>
-    <script src="<?= base_url('assets/') . $tablejs['demo']; ?>"></script>
+if ($optionjs) {
+    foreach ($optionjs as $js) {
+?>
+        <script src="<?= base_url('assets/') . $js; ?>"></script>
 <?php
+    }
 } ?>
 
 </body>

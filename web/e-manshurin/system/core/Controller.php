@@ -88,6 +88,23 @@ class CI_Controller
 		$this->load = &load_class('Loader', 'core');
 		$this->load->initialize();
 		log_message('info', 'Controller Class Initialized');
+
+		if ($this->session->userdata('id') && $this->session->userdata('expired') < time()) {
+			$this->session->unset_userdata('id');
+			$this->session->unset_userdata('expired');
+			$this->session->set_flashdata('message', '
+		    <div class="alert alert-info" role="alert">
+		        Your session is expired!, please login again.
+		    </div>
+		    ');
+			redirect('auth');
+		} else {
+			$data = [
+				'expired' => time() + minutes(1),
+			];
+			$this->session->set_userdata($data);
+		}
+
 		if (!$this->user_data && $this->session->userdata('id')) {
 			$this->user_data = $this->db->get_where('user', [
 				'id' => $this->session->userdata('id')

@@ -5,6 +5,9 @@ class Auth extends CI_Controller
 {
     public function index()
     {
+        if ($this->user_data) {
+            redirect('masteruser');
+        }
         $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email');
         $this->form_validation->set_rules('password', 'Password', 'required|trim');
         if ($this->form_validation->run() == false) {
@@ -45,7 +48,10 @@ class Auth extends CI_Controller
                 </div>');
                 redirect('auth');
             }
-            $this->session->set_userdata('id', $user['id']);
+            $data = [
+                'id' => $user['id']
+            ];
+            $this->session->set_userdata($data);
             redirect('masteruser');
         }
     }
@@ -89,6 +95,7 @@ class Auth extends CI_Controller
     public function  logout()
     {
         $this->session->unset_userdata('id');
+        $this->session->unset_userdata('expired');
         $this->session->set_flashdata('message', '
             <div class="alert alert-info" role="alert">
                 You have been logout!
