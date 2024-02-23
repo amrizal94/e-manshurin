@@ -1,11 +1,11 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class MasterUser extends CI_Controller
+class MasterMasjid extends CI_Controller
 {
     public function index()
     {
-        $data['master_name'] = 'User';
+        $data['master_name'] = 'Masjid';
         $data['title'] = 'Master ' . $data['master_name'];
         $data['user'] = $this->user_data;
         $data['optioncss'] = array('vendor/datatables/dataTables.bootstrap4.min.css');
@@ -17,7 +17,7 @@ class MasterUser extends CI_Controller
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar');
         $this->load->view('templates/topbar', $data);
-        $this->load->view('master/user', $data);
+        $this->load->view('master/masjid', $data);
         $this->load->view('templates/footer', $data);
     }
 }

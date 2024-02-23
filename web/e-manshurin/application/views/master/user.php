@@ -2,11 +2,11 @@
     <h1 class="h3 mb-4 text-gray-800 mr-auto"><?= $title; ?></h1>
     <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm mx-5">
         Export Excel</a>
-    <button type="button" data-toggle="modal" data-target="#addMember" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
-        <i class="fas fa-plus fa-sm text-white-50"></i> Tambah User</button>
+    <button type="button" data-toggle="modal" data-target="#add-member" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+        <i class="fas fa-plus fa-sm text-white-50"></i> Tambah <?= $master_name; ?></button>
 </div>
 
-<div class="modal fade" tabindex="-1" id="addMember">
+<div class="modal fade" tabindex="-1" id="add-member">
     <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
         <div class="modal-content">
             <div class="modal-header">
@@ -16,7 +16,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form class="p-3">
+                <form id="form-add-member" class="p-3" method="post" action="<?= base_url('masteruser'); ?>">
                     <div class="form-group">
                         <label for="name">Nama Lengkap <span class="text-danger">*</span></label>
                         <input type="text" class="form-control" id="name" name="name">
@@ -65,41 +65,30 @@
                             <option>Kelompok</option>
                         </select>
                     </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                <button type="submit" form="form-add-member" class="btn btn-primary">Simpan</button>
             </div>
         </div>
     </div>
 </div>
 
-<div class="d-flex flex-row-reverse">
-    <div class="btn-group order-3 mr-1">
-        <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Level
-        </button>
-        <div class="dropdown-menu">
-            <a class="dropdown-item" href="#">Action</a>
-        </div>
-    </div>
-    <div class="btn-group order-2 mr-1">
-        <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Status Akun
-        </button>
-        <div class="dropdown-menu">
-            <a class="dropdown-item" href="#">Action</a>
-        </div>
-    </div>
-    <div class="btn-group order-1 mr-1">
-        <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Kelompok
-        </button>
-        <div class="dropdown-menu">
-            <a class="dropdown-item" href="#">Action</a>
-        </div>
+<div class="d-flex justify-content-end">
+    <div class="btn-group">
+        <form class="d-flex">
+            <select class="form-control ml-3 w-auto" id="level_akun" name="level_akun">
+                <option>Level Akun</option>
+            </select>
+            <select class="form-control ml-3 w-auto" id="status_akun" name="status_akun">
+                <option>Status Akun</option>
+            </select>
+            <select class="form-control ml-3 w-auto" id="kelompok" name="kelompok">
+                <option>Kelompok</option>
+            </select>
+            <button type="submit" class="btn btn-primary ml-3 w-auto"><i class="fas fa-search fa-fw"></i>
+        </form>
     </div>
 </div>
 <!-- DataTales Example -->

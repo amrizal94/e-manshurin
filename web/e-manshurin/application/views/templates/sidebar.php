@@ -31,13 +31,13 @@
 
     <!-- Nav Item - Master -->
     <li class="nav-item">
-        <a class="nav-link py-0" href="tables.html">
+        <a class="nav-link py-0" href="<?= base_url('masteruser'); ?>">
             <i class="fas fa-fw fa-table"></i>
             <span>Master User</span></a>
     </li>
 
     <li class="nav-item">
-        <a class="nav-link py-0" href="tables.html">
+        <a class="nav-link py-0" href="<?= base_url('mastermasjid'); ?>">
             <i class="fas fa-fw fa-table"></i>
             <span>Master Masjid</span></a>
     </li>
