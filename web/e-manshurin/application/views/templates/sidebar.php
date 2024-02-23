@@ -43,67 +43,67 @@
     </li>
 
     <li class="nav-item">
-        <a class="nav-link py-0" href="tables.html">
+        <a class="nav-link py-0" href="<?= base_url('masterdaerah'); ?>">
             <i class="fas fa-fw fa-table"></i>
             <span>Master Daerah</span></a>
     </li>
 
     <li class="nav-item">
-        <a class="nav-link py-0" href="tables.html">
+        <a class="nav-link py-0" href="<?= base_url(''); ?>">
             <i class="fas fa-fw fa-table"></i>
             <span>Master Desa</span></a>
     </li>
 
     <li class="nav-item">
-        <a class="nav-link py-0" href="tables.html">
+        <a class="nav-link py-0" href="<?= base_url(''); ?>">
             <i class="fas fa-fw fa-table"></i>
             <span>Master Kelompok</span></a>
     </li>
 
     <li class="nav-item">
-        <a class="nav-link py-0" href="tables.html">
+        <a class="nav-link py-0" href="<?= base_url(''); ?>">
             <i class="fas fa-fw fa-table"></i>
             <span>Master Wil Pengurus</span></a>
     </li>
 
     <li class="nav-item">
-        <a class="nav-link py-0" href="tables.html">
+        <a class="nav-link py-0" href="<?= base_url(''); ?>">
             <i class="fas fa-fw fa-table"></i>
             <span>Master Jenis Pengurus</span></a>
     </li>
 
     <li class="nav-item">
-        <a class="nav-link py-0" href="tables.html">
+        <a class="nav-link py-0" href="<?= base_url(''); ?>">
             <i class="fas fa-fw fa-table"></i>
             <span>Master Mubaligh</span></a>
     </li>
 
     <li class="nav-item">
-        <a class="nav-link py-0" href="tables.html">
+        <a class="nav-link py-0" href="<?= base_url(''); ?>">
             <i class="fas fa-fw fa-table"></i>
             <span>Master Kategori Usia</span></a>
     </li>
 
     <li class="nav-item">
-        <a class="nav-link py-0" href="tables.html">
+        <a class="nav-link py-0" href="<?= base_url(''); ?>">
             <i class="fas fa-fw fa-table"></i>
             <span>Master Kelas</span></a>
     </li>
 
     <li class="nav-item">
-        <a class="nav-link py-0" href="tables.html">
+        <a class="nav-link py-0" href="<?= base_url(''); ?>">
             <i class="fas fa-fw fa-table"></i>
             <span>Master Kurikulum</span></a>
     </li>
 
     <li class="nav-item">
-        <a class="nav-link py-0" href="tables.html">
+        <a class="nav-link py-0" href="<?= base_url(''); ?>">
             <i class="fas fa-fw fa-table"></i>
             <span>Master Pengajian</span></a>
     </li>
 
     <li class="nav-item">
-        <a class="nav-link pt-0" href="tables.html">
+        <a class="nav-link pt-0" href="<?= base_url(''); ?>">
             <i class="fas fa-fw fa-table"></i>
             <span>Master Musyawaroh</span></a>
     </li>
