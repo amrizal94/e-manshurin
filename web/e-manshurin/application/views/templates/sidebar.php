@@ -79,13 +79,13 @@
     </li>
 
     <li class="nav-item">
-        <a class="nav-link py-0" href="<?= base_url(''); ?>">
+        <a class="nav-link py-0" href="<?= base_url('masterkategoriusia'); ?>">
             <i class="fas fa-fw fa-table"></i>
             <span>Master Kategori Usia</span></a>
     </li>
 
     <li class="nav-item">
-        <a class="nav-link py-0" href="<?= base_url(''); ?>">
+        <a class="nav-link py-0" href="<?= base_url('masterkelas'); ?>">
             <i class="fas fa-fw fa-table"></i>
             <span>Master Kelas</span></a>
     </li>
