@@ -91,7 +91,7 @@
     </li>
 
     <li class="nav-item">
-        <a class="nav-link py-0" href="<?= base_url(''); ?>">
+        <a class="nav-link py-0" href="<?= base_url('masterkurikulum'); ?>">
             <i class="fas fa-fw fa-table"></i>
             <span>Master Kurikulum</span></a>
     </li>
