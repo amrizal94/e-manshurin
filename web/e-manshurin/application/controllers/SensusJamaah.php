@@ -1,12 +1,12 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class MasterKategoriUsia extends CI_Controller
+class SensusJamaah extends CI_Controller
 {
     public function index()
     {
-        $data['sub_title'] = 'Kategori Usia';
-        $data['title'] = 'Master ' . $data['sub_title'];
+        $data['sub_title'] = 'Jamaah';
+        $data['title'] = 'Sensus ' . $data['sub_title'];
         $data['user'] = $this->user_data;
         $data['optioncss'] = array('vendor/datatables/dataTables.bootstrap4.min.css');
         $data['optionjs'] = array(
@@ -17,7 +17,7 @@ class MasterKategoriUsia extends CI_Controller
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar');
         $this->load->view('templates/topbar', $data);
-        $this->load->view('master/kategoriusia', $data);
+        $this->load->view('master/jamaah', $data);
         $this->load->view('templates/footer', $data);
     }
 }

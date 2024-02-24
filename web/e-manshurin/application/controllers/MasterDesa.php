@@ -5,8 +5,8 @@ class MasterDesa extends CI_Controller
 {
     public function index()
     {
-        $data['master_name'] = 'Desa';
-        $data['title'] = 'Master ' . $data['master_name'];
+        $data['sub_title'] = 'Desa';
+        $data['title'] = 'Master ' . $data['sub_title'];
         $data['user'] = $this->user_data;
         $data['optioncss'] = array('vendor/datatables/dataTables.bootstrap4.min.css');
         $data['optionjs'] = array(
