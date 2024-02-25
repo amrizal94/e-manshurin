@@ -148,9 +148,9 @@
     </li>
 
     <li class="nav-item">
-        <a class="nav-link pt-0" href="charts.html">
+        <a class="nav-link pt-0" href="<?= base_url('evaluasikurikulum'); ?>">
             <i class="fas fa-fw fa-book"></i>
-            <span>Evaluasi Materi</span></a>
+            <span>Evaluasi Kurikulum</span></a>
     </li>
 
     <li class="nav-item">

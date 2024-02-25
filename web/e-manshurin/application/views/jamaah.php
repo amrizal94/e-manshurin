@@ -19,7 +19,7 @@
                 <form id="form-add-jamaah" class="p-3 d-flex flex-wrap justify-content-between" method="post" action="<?= base_url($this->router->class); ?>">
                     <div class="w-50">
                         <div class="form-group w-100 text-center">
-                            <span class="rounded-pill border border-dark h5 px-3 font-weight-bolder text-white" style="background-color: blueviolet;">Form Isian</span>
+                            <span class="rounded-pill border border-dark h5 px-3 font-weight-bolder text-white" style="background-color: deeppink;">Form Isian</span>
                         </div>
                         <div class="form-group">
                             <label for="name">Nama Lengkap <span class="text-danger">*</span></label>
@@ -68,7 +68,7 @@
                     </div>
                     <div style="width: 40%;">
                         <div class="form-group w-100 text-center">
-                            <span class="rounded-pill border border-dark h5 px-3 font-weight-bolder text-white" style="background-color: blueviolet;">Status</span>
+                            <span class="rounded-pill border border-dark h5 px-3 font-weight-bolder text-white" style="background-color: deeppink;">Status</span>
                         </div>
                         <div class="form-group d-flex justify-content-between">
                             <div><label for="menikah">Menikah <span class="text-danger">*</span></label></div>
