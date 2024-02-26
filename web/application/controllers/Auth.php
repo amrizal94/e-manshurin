@@ -58,6 +58,9 @@ class Auth extends CI_Controller
                 'id' => $user['id']
             ];
             $this->session->set_userdata($data);
+            if ($this->session->userdata('last_url')) {
+                redirect($this->session->userdata('last_url'));
+            }
             redirect('masteruser');
         }
     }
@@ -102,6 +105,7 @@ class Auth extends CI_Controller
     {
         $this->session->unset_userdata('id');
         $this->session->unset_userdata('expired');
+        $this->session->unset_userdata('last_url');
         $this->session->set_flashdata('message', '
             <div class="alert alert-info" role="alert">
                 You have been logout!

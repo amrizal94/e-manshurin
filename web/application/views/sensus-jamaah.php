@@ -114,6 +114,10 @@
                                 <option>Status Jamaah</option>
                             </select>
                         </div>
+                        <div class="form-group">
+                            <label for="foto">Upload Foto</label>
+                            <input type="file" class="form-control-file" id="foto" name="foto">
+                        </div>
                     </div>
 
                 </form>

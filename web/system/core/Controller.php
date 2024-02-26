@@ -97,6 +97,8 @@ class CI_Controller
 		        Your session is expired!, please login again.
 		    </div>
 		    ');
+			$last_url = $this->router->class;
+			$this->session->set_userdata('last_url', $last_url);
 			redirect('auth');
 		} else {
 			$data = [
@@ -117,6 +119,7 @@ class CI_Controller
 		        Please login first!
 		    </div>
 		    ');
+
 			redirect('auth');
 		}
 	}

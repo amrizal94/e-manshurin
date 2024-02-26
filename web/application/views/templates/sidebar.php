@@ -128,7 +128,7 @@
         </a>
         <div id="collapsePages" class="collapse show" aria-labelledby="headingPages" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="login.html">Pengajian</a>
+                <a class="collapse-item" href="<?= base_url('absensipengajian'); ?>">Pengajian</a>
                 <a class="collapse-item active" href="register.html">Musyawaroh</a>
                 <a class="collapse-item" href="forgot-password.html">Rekap Absensi</a>
             </div>
