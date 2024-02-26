@@ -142,6 +142,12 @@
     </li>
 
     <li class="nav-item">
+        <a class="nav-link pt-0" href="<?= base_url('dokumentasikegiatan'); ?>">
+            <i class="fas fa-fw fa-book"></i>
+            <span>Dokumentasi kegiatan</span></a>
+    </li>
+
+    <li class="nav-item">
         <a class="nav-link pt-0" href="charts.html">
             <i class="fas fa-fw fa-book"></i>
             <span>Notulen</span></a>
