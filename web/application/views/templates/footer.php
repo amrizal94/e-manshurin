@@ -54,7 +54,7 @@
 <script src="<?= base_url('assets/'); ?>js/sb-admin-2.min.js"></script>
 
 <?php
-if ($optionjs) {
+if (isset($optionjs)) {
     foreach ($optionjs as $js) {
 ?>
         <script src="<?= base_url('assets/') . $js; ?>"></script>

@@ -108,9 +108,9 @@ class CI_Controller
 		}
 
 		if (!$this->user_data && $this->session->userdata('id')) {
-			$this->user_data = $this->db->get_where('user', [
-				'id' => $this->session->userdata('id')
-			])->row_array();
+			$this->load->model('User_model', 'user');
+
+			$this->user_data = $this->user->login($this->session->userdata('id'));
 		}
 
 		if (!$this->user_data && $this->router->class != "auth") {

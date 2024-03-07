@@ -123,7 +123,7 @@
                 <tbody>
                     <tr>
                         <td>
-                            <img class="rounded-circle" style="width: 50px;" src="<?= base_url('assets/'); ?>img/profile/<?= $user['image']; ?>"><span class="mx-3"><?= $user['name']; ?></span>
+                            <img class="rounded-circle" style="width: 50px;" src="<?= base_url('assets/'); ?>img/profile/<?= $akun['foto']; ?>"><span class="mx-3"><?= $akun['nama']; ?></span>
                         </td>
                         <td class="align-middle">tokoira</td>
                         <td class="align-middle"><span class="badge badge-danger w-50">Tidak Aktif</span></td>

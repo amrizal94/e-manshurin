@@ -8,13 +8,13 @@ class Auth extends CI_Controller
     {
         parent::__construct();
         if ($this->user_data && $this->router->method != 'logout') {
-            redirect('masteruser');
+            redirect('dasboard');
         }
     }
 
     public function index()
     {
-        $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email');
+        $this->form_validation->set_rules('username', 'Username', 'required|trim');
         $this->form_validation->set_rules('password', 'Password', 'required|trim');
         if ($this->form_validation->run() == false) {
             $data['title'] = 'Login';
@@ -23,31 +23,31 @@ class Auth extends CI_Controller
             $this->load->view('templates/auth_footer');
         } else {
             $input = [
-                'email' => $this->input->post('email'),
+                'username' => $this->input->post('username'),
                 'password' => $this->input->post('password'),
             ];
 
-            $user = $this->db->get_where('user', [
-                'email' => $input['email']
+            $user = $this->db->get_where('akun', [
+                'username' => $input['username']
             ])->row_array();
 
             if (!$user) {
                 $this->session->set_flashdata('message', '
                 <div class="alert alert-danger" role="alert">
-                    Email not registered!
+                    Username not registered!
                 </div>');
                 redirect('auth');
             }
-            if ($user['is_active'] == 0) {
-                $this->session->set_flashdata('email', $input['email']);
+            if ($user['status_akun_id'] == 2) {
+                $this->session->set_flashdata('username', $input['username']);
                 $this->session->set_flashdata('message', '
                 <div class="alert alert-warning" role="alert">
-                    Email has not been activated! please check your inbox or spam email.
+                your account is deactivated!
                 </div>');
                 redirect('auth');
             }
             if (!password_verify($input['password'], $user['password'])) {
-                $this->session->set_flashdata('email', $input['email']);
+                $this->session->set_flashdata('username', $input['username']);
                 $this->session->set_flashdata('message', '
                 <div class="alert alert-danger" role="alert">
                     Wrong password!
@@ -61,14 +61,15 @@ class Auth extends CI_Controller
             if ($this->session->userdata('last_url')) {
                 redirect($this->session->userdata('last_url'));
             }
-            redirect('masteruser');
+            redirect('auth');
         }
     }
 
     public function register()
     {
         $this->form_validation->set_rules('name', 'Name', 'required|trim');
-        $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email|is_unique[user.email]', [
+        $this->form_validation->set_rules('username', 'Username', 'required|trim|is_unique[akun.username]');
+        $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email|is_unique[akun.email]', [
             'is_unique' => 'This email has been registered'
         ]);
         $this->form_validation->set_rules('password', 'Password', 'required|trim|min_length[3]|matches[repassword]', [
@@ -79,16 +80,22 @@ class Auth extends CI_Controller
 
         if ($this->form_validation->run()) {
             $data = [
-                'name' => htmlspecialchars($this->input->post('name', true)),
+                'username' => htmlspecialchars($this->input->post('username', true)),
                 'email' => htmlspecialchars($this->input->post('email', true)),
-                'image' => 'default.jpg',
                 'password' => password_hash($this->input->post('password'), PASSWORD_DEFAULT),
-                'role_id' => 2,
-                'is_active' => 1,
-                'date_created' => time()
+                'level_user_id' => 1,
+                'status_akun' => 1,
             ];
-
-            $this->db->insert('user', $data);
+            $this->db->insert('akun', $data);
+            $insert_id = $this->db->insert_id();
+            $data['name'] = htmlspecialchars($this->input->post('name', true));
+            $gender = $this->_genderPredict($data['name']);
+            $this->db->insert('user', array(
+                'akun_id' => $insert_id,
+                'nama' => $data['name'],
+                'jenis_kelamin' => $gender,
+                'foto' => $gender . "_default.jpg",
+            ));
             $this->session->set_flashdata('message', '
             <div class="alert alert-success" role="alert">
                 Congratulation! your account has been created. Please Login
@@ -111,5 +118,22 @@ class Auth extends CI_Controller
                 You have been logout!
             </div>');
         redirect('auth');
+    }
+
+    private function _genderPredict($fullname)
+    {
+        $firstname = explode(" ", $fullname);
+        $content = file_get_contents("https://api.genderize.io/?name=" . $firstname[0]);
+
+        $result  = json_decode($content);
+        if ($result) {
+            if ($result->gender == "male") {
+                return 'M';
+            } else {
+                return 'F';
+            }
+        } else {
+            return 'X';
+        }
     }
 }
