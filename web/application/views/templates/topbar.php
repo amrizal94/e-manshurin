@@ -49,23 +49,26 @@
         <!-- Begin Page Content -->
         <div class="container-fluid">
             <?php
+            $falseCount = 0;
             foreach ($user as $key => $value) {
                 $v = $value ? 'true' : 'false';
                 if (!$value && $this->router->class != "user") {
-            ?>
-                    <a class="text-decoration-none" href="<?= base_url('user'); ?>">
-                        <div class="alert alert-warning d-flex w-100 text-center justify-content-center align-items-center" style="gap: 15px;">
-                            <img width="70px" height="70px" class="img-profile" src="<?= base_url('assets/'); ?>img/remainder_profile.jpg">
-                            <div class="d-flex flex-column mb-0" role="alert">
-                                Lengkapi profilmu yuk!
-                                <small>
-                                    Supaya kita saling kenal satu sama lain
-                                </small>
-                            </div>
-                            <i class="fas fa-chevron-right"></i>
-                        </div>
-                    </a>
-            <?php
-                    break;
+                    $falseCount++;
                 }
+            };
+            if ($falseCount > 0) {
+            ?>
+                <a class="text-decoration-none" href="<?= base_url('user'); ?>">
+                    <div class="alert alert-warning d-flex w-100 text-center justify-content-center align-items-center" style="gap: 15px;">
+                        <img width="70px" height="70px" class="img-profile" src="<?= base_url('assets/'); ?>img/remainder_profile.jpg">
+                        <div class="d-flex flex-column mb-0" role="alert">
+                            Lengkapi profilmu yuk! sudah <?= ceil((count($user) - $falseCount) / count($user) * 100) . "%"; ?>
+                            <small>
+                                Supaya kita saling kenal satu sama lain
+                            </small>
+                        </div>
+                        <i class="fas fa-chevron-right"></i>
+                    </div>
+                </a>
+            <?php
             };

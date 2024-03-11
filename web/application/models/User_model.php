@@ -25,15 +25,4 @@ class User_model extends CI_Model
 
         return $this->db->query($query)->row_array();
     }
-    public function status($id)
-    {
-        $query = "SELECT *
-                  FROM status_akun
-                  JOIN akun
-                  ON akun.status_akun_id = status_akun.id
-                  WHERE akun.id = $id
-                  ";
-
-        return $this->db->query($query)->row_array();
-    }
 }

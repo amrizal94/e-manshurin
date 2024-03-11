@@ -1,0 +1,5 @@
+__ci_last_regenerate|i:1709904081;last_url|s:4:"auth";message|s:126:"
+		    <div class="alert alert-info" role="alert">
+		        Your session is expired!, please login again.
+		    </div>
+		    ";__ci_vars|a:1:{s:7:"message";s:3:"old";}expired|i:1709902442;

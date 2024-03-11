@@ -14,7 +14,6 @@ class User extends CI_Controller
         $data['title'] = "Akun";
         $data['user'] = $this->user_data;
         $data['level_user'] = $this->user->level($data['user']['akun_id']);
-        $data['status_akun'] = $this->user->status($data['user']['akun_id']);
         $data['optionjs'] = array(
             'js/user/main.js',
         );

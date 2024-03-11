@@ -38,7 +38,7 @@ class Auth extends CI_Controller
                 </div>');
                 redirect('auth');
             }
-            if ($user['status_akun_id'] == 2) {
+            if ($user['status_akun'] == 0) {
                 $this->session->set_flashdata('username', $input['username']);
                 $this->session->set_flashdata('message', '
                 <div class="alert alert-warning" role="alert">
@@ -69,19 +69,14 @@ class Auth extends CI_Controller
     {
         $this->form_validation->set_rules('name', 'Name', 'required|trim');
         $this->form_validation->set_rules('username', 'Username', 'required|trim|is_unique[akun.username]');
-        $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email|is_unique[akun.email]', [
-            'is_unique' => 'This email has been registered'
-        ]);
         $this->form_validation->set_rules('password', 'Password', 'required|trim|min_length[3]|matches[repassword]', [
             'matches' => 'The Password field does not match',
             'min_lenght' => 'The Password too short'
         ]);
         $this->form_validation->set_rules('repassword', 'Repeat Password', 'matches[password]');
-
         if ($this->form_validation->run()) {
             $data = [
                 'username' => htmlspecialchars($this->input->post('username', true)),
-                'email' => htmlspecialchars($this->input->post('email', true)),
                 'password' => password_hash($this->input->post('password'), PASSWORD_DEFAULT),
                 'level_user_id' => 1,
                 'status_akun' => 1,
@@ -90,12 +85,14 @@ class Auth extends CI_Controller
             $insert_id = $this->db->insert_id();
             $data['name'] = htmlspecialchars($this->input->post('name', true));
             $gender = $this->_genderPredict($data['name']);
-            $this->db->insert('user', array(
+            $user = array(
                 'akun_id' => $insert_id,
                 'nama' => $data['name'],
                 'jenis_kelamin' => $gender,
                 'foto' => $gender . "_default.jpg",
-            ));
+            );
+            $this->db->insert('user', $user);
+            $this->db->delete('akun', array('id' => 5));
             $this->session->set_flashdata('message', '
             <div class="alert alert-success" role="alert">
                 Congratulation! your account has been created. Please Login

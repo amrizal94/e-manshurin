@@ -12,44 +12,51 @@
          </div>
          <div class="col-md-8">
              <div class="card-body d-flex flex-column" style="gap: 15px;">
-                 <!-- <div class="d-flex" style="gap: 10px;">
-                     <h5 class="card-title mb-0"><?= $user['nama']; ?></h5><span class="badge badge-<?= $level_user['warna']; ?>"><?= $level_user['nama']; ?></span>
-                 </div>
-                 <div class="d-flex" style="gap: 10px;">
-                     <p class="card-text mb-0"><?= $user['username']; ?></p>
-                     </h5><span class="badge badge-<?= $status_akun['warna']; ?>"><?= $status_akun['nama']; ?></span>
-                 </div>
-                 <p class="card-text"><?= $user['email']; ?></p>
-                 -->
-
                  <form id="editUser" method="post" action="<?= base_url('user/coba'); ?>" onkeydown="return event.key != 'Enter';">
-                     <div class="form-group d-flex">
-                         <label for="name" class="mr-5 align-self-center" style="width: 10%;">Nama lengkap</label>
-                         <input type="text" class="mr-3 w-50" name="name" id="name" value="<?= $user['nama']; ?>" readonly onfocusout="editName()" onkeyup="textEditName(event)">
-                         <input type="hidden" name="tempName" value="<?= $user['nama']; ?>" id="tempName">
-                         <button type="button" class="btn btn-primary btn-circle" id="btnEditName" onclick="editName()">
+                     <div class="form-group d-flex" style="gap: 10px;">
+                         <label for="name" class="align-self-center" style="width: 10%;">Nama lengkap</label>
+                         <input type="text" class="w-50" name="name" id="name" value="<?= $user['nama']; ?>" readonly onfocusout="editHandle('name')" onkeyup="textEditHandle(event, 'name')">
+                         <span class="h4 align-self-center mb-0 text-success d-none" id="info_name"></span>
+                         <input type="hidden" name="temp_name" value="<?= $user['nama']; ?>" id="temp_name">
+                         <button type="button" class="btn btn-primary btn-circle" id="btn_edit_name" onclick="editHandle('name')">
                              <i class="fas fa-user-edit"></i>
                          </button>
                      </div>
-                     <div class="form-group d-flex">
-                         <label for="username" class="mr-5 align-self-center" style="width: 10%;">Username</label>
-                         <input type="text" class="mr-3 w-50" name="username" id="username" value="<?= $user['username']; ?>" readonly onfocusout="editUsername()" onkeyup="textEditUsername(event)">
-                         <span class="h4 align-self-center mb-0 text-success d-none" id="infoUsername">a-z, 0-9</span>
-                         <input type="hidden" name="tempUsername" value="<?= $user['username']; ?>" id="tempUsername">
-                         <button type="button" class="btn btn-primary btn-circle" id="btnEditUsername" onclick="editUsername()">
+                     <div class="form-group d-flex" style="gap: 10px">
+                         <label for="username" class="align-self-center" style="width: 10%;">Username</label>
+                         <input type="text" class="w-50" name="username" id="username" value="<?= $user['username']; ?>" readonly onfocusout="editHandle('username')" onkeyup="textEditHandle(event, 'username')">
+                         <span class="h4 align-self-center mb-0 text-success d-none" id="info_username">a-z, 0-9</span>
+                         <input type="hidden" name="temp_username" value="<?= $user['username']; ?>" id="temp_username">
+                         <button type="button" class="btn btn-primary btn-circle" id="btn_edit_username" onclick="editHandle('username')">
                              <i class="fas fa-user-edit"></i>
                          </button>
                      </div>
                      <!-- Rounded switch -->
-                     <div class="form-group d-flex">
-                         <label for="status_akun" class="mr-5 mb-0 align-self-center" style="width: 10%;">Status akun</label>
+                     <div class="form-group d-flex" style="gap: 15px;">
+                         <label for="status_akun" class="mb-0 align-self-center" style="width: 10%;">Status akun</label>
                          <label class="switch">
-                             <input type="checkbox" id="status_akun" name="status_akun" onchange="editStatusAkun(event)" value="<?= $user['status_akun_id']; ?>" <?= $user['status_akun_id'] == 1 ? 'checked' : ''; ?>>
+                             <input type="checkbox" id="status_akun" name="status_akun" onchange="editStatusAkun(event)" value="<?= $user['status_akun']; ?>" <?= $user['status_akun'] == 1 ? 'checked' : ''; ?>>
                              <span class="slider round"></span>
                          </label>
                      </div>
+                     <div class="form-group d-flex" style="gap: 15px;">
+                         <label for="jenis_kelamin" class="mb-0 align-self-center" style="width: 10%;">Jenis kelamin</label>
+                         <div class="form-check">
+                             <input class="form-check-input" type="radio" name="jenis_kelain" id="jenis_kelamin_male" value="M" <?= $user['jenis_kelamin'] == 'M' ? 'checked' : ''; ?>>
+                             <label class="form-check-label" for="jenis_kelamin_male">
+                                 Laki - laki
+                             </label>
+                         </div>
+                         <div class="form-check">
+                             <input class="form-check-input" type="radio" name="jenis_kelain" id="jenis_kelamin_female" value="F" <?= $user['jenis_kelamin'] == 'F' ? 'checked' : ''; ?>>
+                             <label class="form-check-label" for="jenis_kelamin_female">
+                                 Perempuan
+                             </label>
+                         </div>
+                     </div>
                  </form>
-                 <p class="card-text"><small class="text-muted">Member since <?= date('d F Y', strtotime($user['date_created'])); ?></small></p>
+                 <p class="card-text mb-0"><small class="text-muted">Member level <?= $level_user['name']; ?></small></p>
+                 <p class="card-text mb-0"><small class="text-muted">Member since <?= date('d F Y', strtotime($user['date_created'])); ?></small></p>
                  <button type="submit" form="editUser" class="btn btn-primary" disabled id="btnSave">Simpan</button>
              </div>
          </div>
