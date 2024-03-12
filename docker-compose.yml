@@ -6,8 +6,6 @@ services:
     volumes:
       - ./wilayah-nusantara:/app/
       - node_modules:/app/node_modules
-    ports:
-      - "1945:1945"
     stdin_open: true
     command: 
         - /bin/sh
@@ -45,10 +43,9 @@ services:
   web:
     image: php:7.2.5-apache
     container_name: php7.2.5-apache
-    ports:
-      - "80:80"
     volumes:
       - ./web:/var/www/html/
+  
     command:
       - /bin/sh
       - -c
@@ -89,6 +86,17 @@ services:
     depends_on:
       - db
       - db_mysql
+
+  nginx:
+    image: nginx
+    container_name: nginx
+    volumes:
+      - ./nginx:/etc/nginx
+    ports:
+       - 80:80
+    depends_on:
+      - web
+      - app
 
 volumes:
   node_modules:

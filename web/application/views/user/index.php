@@ -14,8 +14,8 @@
              <div class="card-body d-flex flex-column" style="gap: 15px;">
                  <form id="editUser" method="post" action="<?= base_url('user/coba'); ?>" onkeydown="return event.key != 'Enter';">
                      <div class="form-group d-flex" style="gap: 10px;">
-                         <label for="name" class="align-self-center" style="width: 10%;">Nama lengkap</label>
-                         <input type="text" class="w-50" name="name" id="name" value="<?= $user['nama']; ?>" readonly onfocusout="editHandle('name')" onkeyup="textEditHandle(event, 'name')">
+                         <label for="name" class="align-self-center mb-0" style="width: 10%;">Nama lengkap</label>
+                         <input type="text" class="w-50" style="min-height: 40px;" name="name" id="name" value="<?= $user['nama']; ?>" readonly onfocusout="editHandle('name')" onkeyup="textEditHandle(event, 'name')">
                          <span class="h4 align-self-center mb-0 text-success d-none" id="info_name"></span>
                          <input type="hidden" name="temp_name" value="<?= $user['nama']; ?>" id="temp_name">
                          <button type="button" class="btn btn-primary btn-circle" id="btn_edit_name" onclick="editHandle('name')">
@@ -23,8 +23,8 @@
                          </button>
                      </div>
                      <div class="form-group d-flex" style="gap: 10px">
-                         <label for="username" class="align-self-center" style="width: 10%;">Username</label>
-                         <input type="text" class="w-50" name="username" id="username" value="<?= $user['username']; ?>" readonly onfocusout="editHandle('username')" onkeyup="textEditHandle(event, 'username')">
+                         <label for="username" class="align-self-center mb-0" style="width: 10%;">Username</label>
+                         <input type="text" class="w-50" style="min-height: 40px;" name="username" id="username" value="<?= $user['username']; ?>" readonly onfocusout="editHandle('username')" onkeyup="textEditHandle(event, 'username')">
                          <span class="h4 align-self-center mb-0 text-success d-none" id="info_username">a-z, 0-9</span>
                          <input type="hidden" name="temp_username" value="<?= $user['username']; ?>" id="temp_username">
                          <button type="button" class="btn btn-primary btn-circle" id="btn_edit_username" onclick="editHandle('username')">
@@ -53,6 +53,15 @@
                                  Perempuan
                              </label>
                          </div>
+                     </div>
+                     <div class="form-group d-flex" style="gap: 10px">
+                         <label for="nomer_hp" class="align-self-center mb-0" style="width: 10%;">Nomer HP</label>
+                         <input type="text" class="w-50" style="min-height: 40px;" name="nomer_hp" id="nomer_hp" value="<?= $user['nomer_hp']; ?>" readonly onfocusout="editHandle('nomer_hp')" onkeyup="textEditHandle(event, 'nomer_hp')">
+                         <span class="h4 align-self-center mb-0 text-success d-none" id="info_nomer_hp">0-9</span>
+                         <input type="hidden" name="temp_nomer_hp" value="<?= $user['nomer_hp']; ?>" id="temp_nomer_hp">
+                         <button type="button" class="btn btn-primary btn-circle" id="btn_edit_nomer_hp" onclick="editHandle('nomer_hp')">
+                             <i class="fas fa-user-edit"></i>
+                         </button>
                      </div>
                  </form>
                  <p class="card-text mb-0"><small class="text-muted">Member level <?= $level_user['name']; ?></small></p>
