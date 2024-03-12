@@ -3,3 +3,5 @@ mysql
 db_*.txt
 .DS_Store
 data
+
+wilayah-nusantara/.pnpm-store
