@@ -1,4 +1,3 @@
 [submodule "wilayah-nusantara"]
 	path = wilayah-nusantara
 	url = https://github.com/theodevoid/wilayah-nusantara.git
-	ignore = dirty
